@@ -4,7 +4,7 @@ import {View, Dimensions, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {theme} from '../constants';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const MyTabBar = ({state, descriptors, navigation}) => {
   return (
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 65,
-    backgroundColor: theme.COLORS.PRIMARY,
+    backgroundColor:"#0072bc",
     borderColor: 'purple',
     borderRadius: 30,
     width: '80%',

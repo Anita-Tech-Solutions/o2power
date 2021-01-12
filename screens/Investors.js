@@ -9,7 +9,7 @@ const Investors = () => {
       <View style={styles.container}>
         <Title>Our Investors</Title>
         <View style={styles.card}>
-          <Heading>EQT</Heading>
+          <Heading style={{padding: 10}}>EQT</Heading>
           <Subheading>
             EQT is a differentiated global investment organization with a
             25-year history of investing in, developing and owning companies,
@@ -26,7 +26,7 @@ const Investors = () => {
           </Subheading>
         </View>
         <View style={styles.card}>
-          <Heading>TEMASEK</Heading>
+          <Heading style={{padding: 10}}>TEMASEK</Heading>
           <Subheading>
             Temasek is a global investment company headquartered in Singapore
             with a net portfolio value of S$306 billion as at 31 March 2020.

@@ -5,10 +5,9 @@ const {width, height} = Dimensions.get('window');
 import {CommonActions} from '@react-navigation/native';
 
 import {Title} from '../components';
-import { theme } from '../constants';
+import {theme} from '../constants';
 
 const ShareComponent = ({navigation}) => {
-  
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -41,12 +40,12 @@ const ShareComponent = ({navigation}) => {
         type="solid"
         title="Share"
         onPress={onShare}
-        icon={<Icon name="share" color="white" size={20}   />}
+        icon={<Icon name="share" color="white" size={20} />}
         buttonStyle={{
-          width:width/2,
-          backgroundColor:theme.COLORS.BUTTON,
-          padding:20,
-          borderRadius:15,
+          width: width / 2,
+          backgroundColor: theme.COLORS.BUTTON,
+          padding: 20,
+          borderRadius: 15,
         }}
       />
     </View>
@@ -56,8 +55,8 @@ const ShareComponent = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:"space-evenly",
-    alignItems:"center",
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 });
 

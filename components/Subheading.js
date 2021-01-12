@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontFamily: 'Lato-Regular',
-    fontWeight: '400',
+    fontFamily: 'Lato-Italic',
+    fontWeight:"400",
     fontSize: 15,
     color: '#7e7e7e',
   },

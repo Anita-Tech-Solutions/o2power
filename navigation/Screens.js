@@ -11,7 +11,6 @@ import CustomDrawerContent from './Menu';
 
 //screens
 import Splash from '../screens/Splash';
-import Welcome from '../screens/Welcome';
 import Home from '../screens/Home';
 import About from '../screens/About';
 import Contact from '../screens/Contact';
@@ -23,6 +22,7 @@ import Newsmedia from '../screens/Newsmedia';
 import Collaterals from '../screens/Collaterals';
 import Team from '../screens/Team';
 import Investors from '../screens/Investors';
+import SingleBlog from '../screens/SingleBlog';
 //stacks
 const Stack = createStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -97,6 +97,11 @@ function KnowledgeStack(props) {
         component={Collaterals}
         options={{header: () => <Header back {...props} />}}
       />
+      <Stack.Screen
+        name="SingleBlog"
+        component={SingleBlog}
+        options={{header: () => <Header back {...props} />}}
+      />
     </Stack.Navigator>
   );
 }
@@ -144,7 +149,6 @@ function ShareStack(props) {
 function BottomStack() {
   return (
     <Bottom.Navigator
-      initialRouteName="Career"
       tabBar={(props) => <MyTabBar {...props} />}
       tabBarOptions={{
         activeTintColor: theme.COLORS.BUTTON,
@@ -218,7 +222,6 @@ export default function OnboardingStack() {
   return (
     <Stack.Navigator mode="card" headerMode="none">
       <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="App" component={AppStack} />
     </Stack.Navigator>
   );

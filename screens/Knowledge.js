@@ -3,10 +3,10 @@ import {StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Collaterals from './Collaterals';
 
-const Knowledge = () => {
+const Knowledge = ({navigation}) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Collaterals />
+      <Collaterals navigation={navigation} />
     </ScrollView>
   );
 };

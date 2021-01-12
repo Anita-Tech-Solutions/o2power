@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 
 import {Header, Icon, Text} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -69,14 +69,22 @@ class HeaderComponent extends Component {
       <Header
         barStyle="light-content"
         statusBarProps={{
-          backgroundColor: theme.COLORS.PRIMARY,
+          backgroundColor: "#008398",
         }}
-        containerStyle={{backgroundColor: theme.COLORS.PRIMARY}}
+        containerStyle={styles.container}
         leftComponent={this.LeftComponent}
         centerComponent={this.CenterComponent}
       />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor:"#008398",
+    borderBottomLeftRadius: theme.SIZES.BASE,
+    borderBottomRightRadius: theme.SIZES.BASE,
+  },
+});
 
 export default HeaderComponent;

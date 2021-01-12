@@ -89,16 +89,16 @@ class DrawerItem extends Component {
               margin: 5,
               borderRadius: 10,
               backgroundColor: focused
-                ? theme.COLORS.WHITE
+                ? "#14ac4c"
                 : theme.COLORS.PRIMARY,
             }}>
             {this.renderIcon()}
             <ListItem.Content>
               <ListItem.Title
                 style={{
-                  color: focused ? theme.COLORS.PRIMARY : 'white',
+                  color: focused ? "white" : 'white',
                   fontSize: 20,
-                  fontFamily: 'Rubik-Light',
+                  fontFamily: 'Lato-Italic',
                 }}>
                 {title}
               </ListItem.Title>

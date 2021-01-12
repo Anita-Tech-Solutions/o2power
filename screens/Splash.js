@@ -1,13 +1,18 @@
 import React, {useEffect} from 'react';
 import {View, StyleSheet, Image, Dimensions} from 'react-native';
-import {theme} from '../constants';
-
 const {width} = Dimensions.get('window');
+
+import {CommonActions} from '@react-navigation/native';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('App');
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'App'}],
+        }),
+      );
     }, 2000);
   }, []);
   return (
@@ -16,7 +21,7 @@ const Splash = ({navigation}) => {
         <Image
           source={require('../assets/images/logo.png')}
           resizeMode={'contain'}
-          style={{width: width - 20, height: 100}}
+          style={{width: width, height: 250}}
         />
       </View>
     </View>

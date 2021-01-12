@@ -9,7 +9,7 @@ const {width} = Dimensions.get('window');
 
 const Newsmedia = () => {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Title>LINKEDIN</Title>
         <FlatList
@@ -22,7 +22,7 @@ const Newsmedia = () => {
                   style={{
                     fontSize: 12,
                     textAlign: 'center',
-                    fontFamily: 'Lato-Thin',
+                    fontFamily: 'Lato-Italic',
                     color: 'gray',
                   }}>
                   {item.title}
@@ -44,7 +44,7 @@ const Newsmedia = () => {
                   style={{
                     fontSize: 12,
                     textAlign: 'center',
-                    fontFamily: 'Lato-Thin',
+                    fontFamily: 'Lato-Italic',
                     color: 'gray',
                   }}>
                   {item.title}
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    marginBottom: 100,
   },
   card: {
     width: width / 3.3,

@@ -2,82 +2,73 @@ import React, {Component} from 'react';
 import {
   View,
   ScrollView,
-  Image,
   Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Animated,
+  Easing,
 } from 'react-native';
-const {width, height} = Dimensions.get('window');
-
-import {Card, Icon, ListItem} from 'react-native-elements';
+import {} from 'react-native-reanimated';
+import {Card, Icon} from 'react-native-elements';
 import {FlatList} from 'react-native-gesture-handler';
 
-const ABOUT = [
-  {
-    title: 'Who we are',
-    link: 'About',
-    iconName: 'info',
-    iconType: 'entypo',
-    color: '',
-  },
-  {
-    title: 'Our Team',
-    link: 'Team',
-    iconName: 'team',
-    iconType: 'antdesign',
-    color: '',
-  },
-  {
-    title: 'Investors',
-    link: 'Investors',
-    iconName: 'inr',
-    iconType: 'fontisto',
-    color: '',
-  },
-];
-
-const KNOWLEDGE = [
-  {
-    title: 'News & Media',
-    link: 'Newsmedia',
-    iconName: 'newspaper-outline',
-    iconType: 'ionicon',
-    color: 'black',
-  },
-  {
-    title: 'Collaterals',
-    link: 'Collaterals',
-    iconName: 'paperclip',
-    iconType: 'antdesign',
-    color: '',
-  },
-];
+const {width} = Dimensions.get('window');
+import {ABOUT, KNOWLEDGE} from '../constants/data';
 
 class Home extends Component {
   state = {
     enabled: false,
     enabled2: false,
+    rotateValueHolder: new Animated.Value(0),
   };
+
+  componentDidMount() {
+    this.startImageRotateFunction();
+  }
+
+  startImageRotateFunction = () => {
+    this.state.rotateValueHolder.setValue(0);
+    Animated.timing(this.state.rotateValueHolder, {
+      toValue: 1,
+      duration: 4000,
+      easing: Easing.bounce,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  RotateData = this.state.rotateValueHolder.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
 
   render() {
     const {enabled, enabled2} = this.state;
     const {navigation} = this.props;
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{flex: 1, backgroundColor: 'white'}}>
         <View style={styles.container}>
-          <View style={{marginTop: 15}}>
-            <Image
+          <View style={{marginTop: 20}}>
+            <Animated.Image
               source={require('../assets/images/logo.png')}
               resizeMode={'contain'}
-              style={{width: width, height: 100}}
+              style={{
+                width: width,
+                height: 150,
+                transform: [{rotate: this.RotateData}],
+              }}
             />
           </View>
-          <View style={{marginTop: 20}}>
-            <Card containerStyle={styles.card}>
-              <Text>Expertise</Text>
-            </Card>
+          <View style={[styles.content, {marginTop: 30}]}>
+            <TouchableWithoutFeedback
+              onPress={() => navigation.navigate('Expertise')}>
+              <Card containerStyle={styles.card}>
+                <Text style={styles.text}>Expertise</Text>
+              </Card>
+            </TouchableWithoutFeedback>
 
             <Card containerStyle={[styles.card]}>
               <TouchableOpacity
@@ -87,7 +78,7 @@ class Home extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text>About Us</Text>
+                  <Text style={styles.text}>About Us</Text>
                   <Icon
                     name={enabled ? 'chevron-up' : 'chevron-down'}
                     type="entypo"
@@ -98,7 +89,7 @@ class Home extends Component {
               {enabled && (
                 <FlatList
                   data={ABOUT}
-                  renderItem={({item, index}) => (
+                  renderItem={({item}) => (
                     <TouchableWithoutFeedback
                       onPress={() => navigation.navigate(item.link)}>
                       <View
@@ -129,7 +120,13 @@ class Home extends Component {
                             size={20}
                           />
                         </View>
-                        <Text>{item.title}</Text>
+                        <Text
+                          style={{
+                            fontFamily: 'Lato-Italic',
+                            fontWeight: '100',
+                          }}>
+                          {item.title}
+                        </Text>
                       </View>
                     </TouchableWithoutFeedback>
                   )}
@@ -146,14 +143,14 @@ class Home extends Component {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text>Knowledge Center</Text>
+                  <Text style={styles.text}>Knowledge Center</Text>
                   <Icon name="chevron-down" type="entypo" size={20} />
                 </View>
               </TouchableOpacity>
               {enabled2 && (
                 <FlatList
                   data={KNOWLEDGE}
-                  renderItem={({item, index}) => (
+                  renderItem={({item}) => (
                     <TouchableWithoutFeedback
                       onPress={() =>
                         navigation.navigate('Knowledge', {screen: item.link})
@@ -186,7 +183,9 @@ class Home extends Component {
                             size={20}
                           />
                         </View>
-                        <Text>{item.title}</Text>
+                        <Text style={{fontFamily: 'Lato-Italic'}}>
+                          {item.title}
+                        </Text>
                       </View>
                     </TouchableWithoutFeedback>
                   )}
@@ -194,12 +193,18 @@ class Home extends Component {
                 />
               )}
             </Card>
-            <Card containerStyle={styles.card}>
-              <Text>Career</Text>
-            </Card>
-            <Card containerStyle={styles.card}>
-              <Text>Contact Us</Text>
-            </Card>
+            <TouchableWithoutFeedback
+              onPress={() => navigation.navigate('Career')}>
+              <Card containerStyle={styles.card}>
+                <Text style={styles.text}>Career</Text>
+              </Card>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => navigation.navigate('Contact')}>
+              <Card containerStyle={styles.card}>
+                <Text style={styles.text}>Contact Us</Text>
+              </Card>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ScrollView>
@@ -211,8 +216,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    flexGrow: 100,
-    marginBottom: 100,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+    marginBottom: 90,
   },
   card: {
     backgroundColor: 'white',
@@ -222,6 +230,11 @@ const styles = StyleSheet.create({
     shadowColor: 'gray',
     borderColor: 'white',
     borderWidth: 0.4,
+  },
+  text: {
+    fontFamily: 'Lato-Italic',
+    fontSize: 22,
+    fontWeight: '600',
   },
 });
 

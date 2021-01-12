@@ -1,11 +1,9 @@
 import React from 'react';
 import {Image} from 'react-native';
-import {View, StyleSheet, Dimensions, Text} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Heading, Subheading, Subtitle, Title} from '../components';
 import {BIO} from '../constants/data';
-
-const {width} = Dimensions.get('window');
 
 const Team = () => {
   return (
@@ -24,7 +22,7 @@ const Team = () => {
                 style={{width: 120, height: 100, borderRadius: 50}}
               />
             </View>
-            <Heading>{name}</Heading>
+            <Heading style={{padding:10}} >{name}</Heading>
             <Subheading>{bio}</Subheading>
           </View>
         ))}

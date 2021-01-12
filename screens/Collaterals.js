@@ -1,16 +1,14 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image, Dimensions} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Button, Card} from 'react-native-elements';
 import {Title} from '../components';
 import {COLLATERALS} from '../constants/data';
 import {theme} from '../constants';
 
-const {width} = Dimensions.get('window');
-
-const Collaterals = () => {
+function Collaterals({navigation}) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} >
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <Title>Collaterals</Title>
         {COLLATERALS.map(({title, img}, index) => (
@@ -20,12 +18,13 @@ const Collaterals = () => {
               style={{
                 marginTop: 10,
                 marginBottom: 10,
-                fontFamily: 'Lato-Thin',
+                fontFamily: 'Lato-Italic',
                 fontSize: 12,
               }}>
               {title}
             </Text>
             <Button
+              onPress={() => navigation.navigate("SingleBlog")}
               type="solid"
               title="Read More"
               buttonStyle={{
@@ -38,12 +37,13 @@ const Collaterals = () => {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+    marginBottom: 100,
   },
   card: {
     backgroundColor: 'white',

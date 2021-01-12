@@ -3,7 +3,7 @@ import {Text} from 'react-native';
 import {ScrollView, StyleSheet, View, Image} from 'react-native';
 import {} from 'react-native-elements';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {DrawerItem as DrawerCustomItem, Subtitle, Title} from '../components/';
+import {DrawerItem as DrawerCustomItem} from '../components/';
 import {theme} from '../constants/';
 
 const CustomDrawerContent = ({drawerPosition, navigation, state}) => {
@@ -19,11 +19,11 @@ const CustomDrawerContent = ({drawerPosition, navigation, state}) => {
   ];
 
   return (
-    <ScrollView
+    <View
       showsVerticalScrollIndicator={false}
       style={styles.container}
-      forceInset={{top: 'always', horizontal: 'never'}}>
-      <View style={styles.imageContainer}>
+      forceInset={{top: 'always', horizontal: 'never'}}  >
+      <View style={styles.imageContainer}  >
         <Image
           source={require('../assets/images/logo.png')}
           resizeMode={'contain'}
@@ -53,11 +53,11 @@ const CustomDrawerContent = ({drawerPosition, navigation, state}) => {
         </ScrollView>
       </View>
       <View style={styles.version}>
-        <Text style={{bottom: 10, color: 'white', fontFamily: 'Rubik-Light'}}>
+        <Text style={{bottom: 10, color: 'white', fontFamily: 'Lato-Light'}}>
           App Version 1.0.0
         </Text>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
